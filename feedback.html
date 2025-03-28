@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Mental Health</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1ABC9C, #16A085);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px; /* Increased width */
+            margin: 50px auto;
+            padding: 30px; /* Increased padding */
+            padding-right: 60px;
+            background: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 15px; /* Increased padding for better input visibility */
+            margin: 15px 0; /* Increased margin for spacing */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px; /* Larger font size */
+        }
+        textarea {
+            height: 150px; /* Increased height for feedback box */
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color:#E67E22;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px; /* Larger font for readability */
+        }
+        button:hover {
+            background-color: #D35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Share Your Feedback</h2>
+        <form action="save_feedback.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Feedback:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>

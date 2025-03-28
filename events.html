@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1ABC9C, #16A085);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            color: #333;
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: left;
+        }
+        .event {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-left: 5px solid #E67E22 ;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            width: calc(100% - 20px);
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #E67E22;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #D35400;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #E67E22;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        a:hover {
+            background: #D35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Upcoming Mental Health Events</h1>
+        <p>Join our upcoming workshops, webinars, and community events.</p>
+
+        <div>
+            <h2>Add New Event</h2>
+            <input type="text" id="eventTitle" placeholder="Event Title"><br>
+            <input type="date" id="eventDate"><br>
+            <input type="time" id="eventTime"><br>
+            <input type="text" id="eventLocation" placeholder="Location"><br>
+            <input type="text" id="eventDescription" placeholder="Description"><br>
+            <button onclick="addEvent()">Add Event</button>
+        </div>
+
+        <h2>Scheduled Events</h2>
+        <div id="eventList"></div>
+
+        <a href="index.html">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadEvents);
+
+        function addEvent() {
+            let title = document.getElementById("eventTitle").value;
+            let eventDate = document.getElementById("eventDate").value;
+            let eventTime = document.getElementById("eventTime").value;
+            let location = document.getElementById("eventLocation").value;
+            let description = document.getElementById("eventDescription").value;
+
+            if (!title || !eventDate || !eventTime || !location || !description) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("title", title);
+            formData.append("event_date", eventDate);
+            formData.append("event_time", eventTime);
+            formData.append("location", location);
+            formData.append("description", description);
+
+            fetch("Events.php", {
+                method: "POST",
+                body: formData
+            }).then(response => response.text()).then(() => {
+                loadEvents();
+                document.getElementById("eventTitle").value = "";
+                document.getElementById("eventDate").value = "";
+                document.getElementById("eventTime").value = "";
+                document.getElementById("eventLocation").value = "";
+                document.getElementById("eventDescription").value = "";
+            });
+        }
+
+        function loadEvents() {
+            fetch("Events.php")
+                .then(response => response.json())
+                .then(data => {
+                    let eventList = document.getElementById("eventList");
+                    eventList.innerHTML = ""; // Clear previous list
+
+                    data.forEach(event => {
+                        let eventItem = document.createElement("div");
+                        eventItem.classList.add("event");
+                        eventItem.innerHTML = `
+                            <h2>${event.title}</h2>
+                            <p><strong>Date:</strong> ${event.event_date}</p>
+                            <p><strong>Time:</strong> ${event.event_time}</p>
+                            <p><strong>Location:</strong> ${event.location}</p>
+                            <p>${event.description}</p>
+                        `;
+                        eventList.appendChild(eventItem);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>

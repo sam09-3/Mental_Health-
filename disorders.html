@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disorders Information</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <style>
+        body {
+             background: linear-gradient(90deg, #1ABC9C, #16A085);;
+            text-align: center;
+            padding: 20px;
+        }
+        .disorder {
+            background: white;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: double 6px #D35400;
+            transition: background 0.3s ease, transform 0.3s ease;
+            text-align: left;
+        }
+        .highlight {
+            background: #bdd4ee;
+            animation: highlightFade 1.5s ease-in-out;
+        }
+        @keyframes highlightFade {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white;">Mental Health Disorders</h1>
+
+    <div id="depression" class="disorder">
+        <h2>Depression</h2>
+        <p>"A serious mental health disorder that negatively impacts how you feel, think, and act. It can cause feelings of sadness and a loss of interest in activities once enjoyed."</p>
+        <p>"Common symptoms include fatigue, changes in appetite, difficulty sleeping, and feelings of hopelessness. Treatment options include therapy, medication, and lifestyle changes."</p>
+    </div>
+
+    <div id="anxiety" class="disorder">
+        <h2>Anxiety Disorders</h2>
+        <p>"Characterized by persistent and excessive worry that interferes with daily activities. Symptoms include rapid heartbeat, restlessness, and difficulty concentrating."</p>
+        <p>"Anxiety disorders can manifest as generalized anxiety, panic attacks, social anxiety, or phobias. Therapy, relaxation techniques, and medication can help manage symptoms."</p>
+    </div>
+
+    <div id="bipolar" class="disorder">
+        <h2>Bipolar Disorder</h2>
+        <p>"A mental health condition that causes extreme mood swings, including emotional highs (mania or hypomania) and lows (depression)."</p>
+        <p>"Manic episodes may include high energy, reduced need for sleep, and impulsive behavior, while depressive episodes cause sadness and fatigue. Treatment often includes mood stabilizers and therapy."</p>
+    </div>
+
+    <div id="ocd" class="disorder">
+        <h2>Obsessive-Compulsive Disorder (OCD)</h2>
+        <p>"A disorder characterized by unwanted and intrusive thoughts ("obsessions") and repetitive behaviors ("compulsions") aimed at reducing anxiety."</p>
+        <p>"Common compulsions include excessive cleaning, checking, or counting. Cognitive-behavioral therapy (CBT) and medication are common treatments."</p>
+    </div>
+
+    <div id="ptsd" class="disorder">
+        <h2>Post-Traumatic Stress Disorder (PTSD)</h2>
+        <p>"A psychiatric disorder that can occur in people who have experienced or witnessed a traumatic event, causing flashbacks, nightmares, and severe anxiety."</p>
+        <p>"Symptoms can persist long after the event and may include emotional numbness, difficulty sleeping, and hyperarousal. Therapy and medication can aid recovery."</p>
+    </div>
+
+    <div id="schizophrenia" class="disorder">
+        <h2>Schizophrenia</h2>
+        <p>"A chronic and severe mental disorder that affects how a person thinks, feels, and behaves, often resulting in hallucinations, delusions, and impaired functioning."</p>
+        <p>"Treatment involves antipsychotic medication, therapy, and support networks to help individuals manage symptoms and improve their quality of life."</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.hash) {
+                var target = document.querySelector(window.location.hash);
+                if (target) {
+                    target.classList.add("highlight");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

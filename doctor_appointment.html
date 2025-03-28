@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1ABC9C, #16A085);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            color: #333;
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: left;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #E67E22;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        a:hover {
+            background: #D35400;
+        }
+
+        input, textarea, button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #E67E22;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+        }
+
+        button:hover {
+            background: #D35400;
+        }
+
+        .appointment-list {
+            margin-top: 20px;
+        }
+
+        .appointment-item {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 5px solid #E67E22;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Doctor Appointment</h1>
+        <p>Consulting a mental health professional is a vital step toward well-being.</p>
+
+        <h2>Book an Appointment</h2>
+        <input type="text" id="patientName" placeholder="Your Name"><br>
+        <input type="text" id="doctorName" placeholder="Doctor's Name"><br>
+        <input type="date" id="appointmentDate"><br>
+        <input type="time" id="appointmentTime"><br>
+        <textarea id="appointmentReason" placeholder="Reason for Appointment"></textarea><br>
+        <button onclick="addAppointment()">Book Appointment</button>
+
+        <h2>Your Appointments</h2>
+        <div id="appointmentList" class="appointment-list"></div>
+
+        <a href="index.html">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadAppointments);
+
+        function addAppointment() {
+            let patientName = document.getElementById("patientName").value;
+            let doctorName = document.getElementById("doctorName").value;
+            let appointmentDate = document.getElementById("appointmentDate").value;
+            let appointmentTime = document.getElementById("appointmentTime").value;
+            let reason = document.getElementById("appointmentReason").value;
+
+            if (!patientName || !doctorName || !appointmentDate || !appointmentTime || !reason) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("patient_name", patientName);
+            formData.append("doctor_name", doctorName);
+            formData.append("appointment_date", appointmentDate);
+            formData.append("appointment_time", appointmentTime);
+            formData.append("reason", reason);
+
+            fetch("Doctors Appointment.php", {
+                method: "POST",
+                body: formData
+            }).then(response => response.text()).then(response => {
+                alert(response); // Show success or error message
+                loadAppointments(); // Reload appointments after adding
+            }).catch(error => console.error("Error:", error));
+        }
+
+        function loadAppointments() {
+            fetch("Doctors Appointment.php")
+                .then(response => response.json())
+                .then(data => {
+                    let appointmentList = document.getElementById("appointmentList");
+                    appointmentList.innerHTML = ""; // Clear previous list
+
+                    data.forEach(appointment => {
+                        let appointmentItem = document.createElement("div");
+                        appointmentItem.classList.add("appointment-item");
+                        appointmentItem.innerHTML = `
+                            <h3>${appointment.patient_name} with Dr. ${appointment.doctor_name}</h3>
+                            <p><strong>Date:</strong> ${appointment.appointment_date}</p>
+                            <p><strong>Time:</strong> ${appointment.appointment_time}</p>
+                            <p><strong>Reason:</strong> ${appointment.reason}</p>
+                        `;
+                        appointmentList.appendChild(appointmentItem);
+                    });
+                }).catch(error => console.error("Error loading appointments:", error));
+        }
+    </script>
+</body>
+</html>

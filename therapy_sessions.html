@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapy Sessions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1ABC9C, #16A085);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 10px;
+            color: #333;
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: left;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: #E67E22;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #D35400;
+        }
+
+        input, textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .therapy-list {
+            margin-top: 20px;
+        }
+
+        .therapy-item {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 5px solid #E67E22;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Professional Therapy Sessions</h1>
+        <p>Schedule your therapy sessions and track upcoming appointments.</p>
+
+        <div>
+            <h2>Add New Therapy Session</h2>
+            <input type="text" id="sessionType" placeholder="Session Type (e.g., CBT, DBT)"><br>
+            <input type="text" id="therapistName" placeholder="Therapist Name"><br>
+            <input type="date" id="sessionDate"><br>
+            <input type="time" id="sessionTime"><br>
+            <textarea id="sessionDescription" placeholder="Session Description"></textarea><br>
+            <button class="btn" onclick="addTherapySession()">Add Therapy Session</button>
+        </div>
+
+        <h2>Upcoming Therapy Sessions</h2>
+        <div id="therapyList" class="therapy-list"></div>
+
+        <a href="index.html" class="btn">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadTherapySessions);
+
+        function addTherapySession() {
+            let sessionType = document.getElementById("sessionType").value;
+            let therapistName = document.getElementById("therapistName").value;
+            let sessionDate = document.getElementById("sessionDate").value;
+            let sessionTime = document.getElementById("sessionTime").value;
+            let sessionDescription = document.getElementById("sessionDescription").value;
+
+            if (!sessionType || !therapistName || !sessionDate || !sessionTime || !sessionDescription) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("session_type", sessionType);
+            formData.append("therapist_name", therapistName);
+            formData.append("session_date", sessionDate);
+            formData.append("session_time", sessionTime);
+            formData.append("description", sessionDescription);
+
+            fetch("Therapy Sessions.php", {
+                method: "POST",
+                body: formData
+            }).then(response => response.text()).then(() => {
+                loadTherapySessions();
+                document.getElementById("sessionType").value = "";
+                document.getElementById("therapistName").value = "";
+                document.getElementById("sessionDate").value = "";
+                document.getElementById("sessionTime").value = "";
+                document.getElementById("sessionDescription").value = "";
+            });
+        }
+
+        function loadTherapySessions() {
+            fetch("Therapy Sessions.php")
+                .then(response => response.json())
+                .then(data => {
+                    let therapyList = document.getElementById("therapyList");
+                    therapyList.innerHTML = ""; // Clear previous list
+
+                    data.forEach(session => {
+                        let sessionItem = document.createElement("div");
+                        sessionItem.classList.add("therapy-item");
+                        sessionItem.innerHTML = `
+                            <h3>${session.session_type}</h3>
+                            <p><strong>Therapist:</strong> ${session.therapist_name}</p>
+                            <p><strong>Date:</strong> ${session.session_date}</p>
+                            <p><strong>Time:</strong> ${session.session_time}</p>
+                            <p>${session.description}</p>
+                        `;
+                        therapyList.appendChild(sessionItem);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>

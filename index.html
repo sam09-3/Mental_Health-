@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home - Mental Health</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #F8F9FA;
+      color: #2C3E50;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header Section */
+    header {
+      background: #1ABC9C;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    header nav {
+      display: flex;
+      gap: 20px;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    header nav a:hover {
+      opacity: 0.8;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, #1ABC9C, #16A085);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .hero .cta-btn {
+      background: #E67E22;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .hero .cta-btn:hover {
+      background: #D35400;
+    }
+
+    /* Container for Cards */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 50px 40px;
+    }
+
+    /* Card Styling */
+    .box {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .box h2 {
+      font-size: 1.6rem;
+      color: #2C3E50;
+      margin-bottom: 10px;
+    }
+    .box p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    .box button {
+      background: #E67E22;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .box button:hover {
+      background: #D35400;
+    }
+
+    /* Footer Section */
+    footer {
+      background: #2C3E50;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Mental Health Wellness</div>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="logout.php">Logout</a>
+      <a href="registration.html">Register</a>
+      <a href="About Us.html">About</a>
+      <a href="feedback.html">Feedback</a>
+
+
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Prioritize Your Mental Health</h1>
+    <p>Explore resources, support, and guidance for a balanced mind and life.</p>
+    
+  </section>
+
+  <!-- Cards Section -->
+  <div class="container">
+    <div class="box">
+      <h2>Therapy Sessions</h2>
+      <p>Explore various therapy options to improve your mental well-being.</p>
+      <button onclick="window.location.href='therapy_sessions.html'">Learn More</button>
+    </div>
+    <div class="box">
+      <h2>Doctor Appointment</h2>
+      <p>Schedule appointments with licensed mental health professionals.</p>
+      <button onclick="window.location.href='doctor_appointment.html'">Book Now</button>
+    </div>
+    <div class="box">
+      <h2>Videos</h2>
+      <p>Watch informative videos on mental health topics and strategies.</p>
+      <button onclick="window.location.href='videos.html'">Watch Now</button>
+    </div>
+    <div class="box">
+        <h2>Personalized Treatment</h2>
+        <p>Get tailored treatment plans based on your individual needs.</p>
+        <button onclick="window.location.href='personalized_treatment.html'">Get Started</button>
+    </div>
+    <div class="box">
+        <h2>Schedule Planner</h2>
+        <p>Organize your mental health activities and appointments.</p>
+        <button onclick="window.location.href='schedule_planner.html'">Plan Your Schedule</button>
+    </div>
+    <div class="box">
+        <h2>Self-Care Resources</h2>
+        <p>Access tools and resources to enhance your self-care routine.</p>
+        <button onclick="window.location.href='self_care_resources.html'">Explore Resources</button>
+    </div>
+    <div class="box">
+        <h2>Events</h2>
+        <p>Join our workshops and seminars on mental health awareness.</p>
+        <button onclick="window.location.href='events.html'">View Events</button>
+    </div>
+    <div class="box">
+      <h2>Community Support</h2>
+      <p>Join support groups and connect with like-minded individuals.</p>
+      <button onclick="window.location.href='community.html'">Join Now</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Mental Health Wellness. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

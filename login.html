@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial, sans-serif';
+            
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #1ABC9C, #16A085 );
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            padding: 40px;
+            color: #333;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .content .start-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1rem;
+            color: #fff;
+            background: linear-gradient(to right, #1ABC9C, #16A085 );
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .content .start-button:hover {
+            background: linear-gradient(to left,#1ABC9C, #16A085 );
+        }
+
+        .image-section {
+            background: linear-gradient(to right,#1ABC9C(74, 144, 226, 0.8), #16A085 (123, 67, 151, 0.8)), url('https://via.placeholder.com/600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: #fff;
+        }
+
+        .image-section .form {
+            width: 100%;
+            max-width: 300px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-section .form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .image-section .form button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #1ABC9C, #16A085 );
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .image-section .form button:hover {
+            background: linear-gradient(to left, #1ABC9C, #16A085 );
+        }
+
+        .image-section .form .forgot {
+            margin-top: 10px;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .image-section .form .forgot a {
+            color: #D35400 ;
+            text-decoration: none;
+        }
+
+        .image-section .form .forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .features {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .features ul {
+            list-style: none;
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        .features ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .features ul li::before {
+            content: '\2713';
+            color:#D35400 ;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        
+        function validateLogin(event) {
+            event.preventDefault();
+
+            const username = document.querySelector("input[name='username']").value;
+            const password = document.querySelector("input[name='password']").value;
+
+            // Retrieve stored credentials
+            const storedUsername = localStorage.getItem("username");
+            const storedPassword = localStorage.getItem("password");
+
+            if (username === storedUsername && password === storedPassword) {
+                alert("Login successful! Redirecting to the home page...");
+                window.location.href = "home.html";
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+
+        function registerUser(username, password) {
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+        }
+
+        // Example: Register a user (to be called from the registration page)
+        // registerUser("user1", "password123");
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Do You Need A Hand?</h1>
+            <p>Relax, I Got You.</p>
+        
+            <div class="features">
+                <h2>Why Choose Us?</h2>
+                <ul>
+                    <li>24/7 Support</li>
+                    <li>Confidential Consultations</li>
+                    <li>Personalized Guidance</li>
+                    <li>Expert Professionals</li>
+                </ul>
+            </div>
+        </div>
+        <div class="image-section">
+            <form class="form" action="login.php" method="post">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <div class="forgot">
+                    
+                    <p><a href="registration.html">Go to Registration.</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

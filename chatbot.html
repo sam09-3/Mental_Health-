@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Community Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1ABC9C, #16A085);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            color: #333;
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: left;
+        }
+        .chat-box {
+            border: 2px solid #D35400;
+            background: #fff;
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 10px;
+            color: #333;
+        }
+        .chat-input {
+            display: flex;
+            margin-top: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #D35400;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 10px;
+            background:#D35400;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background: #D35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Community Support Chat</h1>
+        <p>Connect and share in a safe and supportive environment.</p>
+        <div class="chat-box" id="chatBox"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+
+            <button onclick="sendMessage()">Send</button>
+            
+        </div>
+        <a href="index.html" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: linear-gradient(90deg, #1ABC9C, #16A085); color: #fff; text-decoration: none; border-radius: 8px;">Back to Home</a>
+
+    </div>
+    
+    <script>
+        const faq = {
+            "what is depression?": "Depression is a mood disorder that causes persistent feelings of sadness and loss of interest.",
+            "how to manage anxiety?": "Managing anxiety can involve deep breathing exercises, mindfulness, and therapy.",
+            "symptoms of bipolar disorder": "Bipolar disorder symptoms include extreme mood swings, from depressive lows to manic highs.",
+            "how to help someone with ptsd?": "You can support someone with PTSD by listening, encouraging professional help, and being patient.",
+            "what is cognitive behavioral therapy?": "Cognitive Behavioral Therapy (CBT) is a type of psychotherapy that helps change negative thought patterns.",
+            "what are the symptoms of schizophrenia?": "Schizophrenia symptoms include hallucinations, delusions, and disorganized thinking.",
+            "how to cope with stress?": "Stress management strategies include exercise, relaxation techniques, and talking to someone you trust.",
+            "what are the signs of burnout?": "Signs of burnout include exhaustion, reduced performance, and feelings of detachment.",
+            "how does trauma affect mental health?": "Trauma can lead to PTSD, anxiety, depression, and other mental health challenges.",
+            "what is mindfulness meditation?": "Mindfulness meditation is a practice of focusing on the present moment to reduce stress and improve mental clarity.",
+            "what is grief?": "Grief is a natural response to loss, often involving emotions like sadness, anger, and acceptance.",
+            "how can journaling help mental health?": "Journaling helps process emotions, reduce stress, and track personal growth.",
+            "what is exposure therapy?": "Exposure therapy is a treatment that helps people face and reduce fear-based responses.",
+            "can mental illness be cured?": "Many mental illnesses can be managed effectively with treatment, but not all are curable.",
+            "what is high-functioning anxiety?": "High-functioning anxiety involves excessive worry while maintaining daily responsibilities.",
+            "how does childhood trauma impact adults?": "Childhood trauma can lead to anxiety, depression, and relationship difficulties in adulthood.",
+            "what is self-care?": "Self-care involves activities that improve mental, emotional, and physical well-being.",
+            "can pets improve mental health?": "Yes, pets provide companionship, reduce stress, and improve mood.",
+            "what is imposter syndrome?": "Imposter syndrome is doubting one’s abilities despite success and external validation.",
+            "how to practice gratitude?": "Practicing gratitude involves acknowledging and appreciating positive aspects of life.",
+            "how does social media affect mental health?": "Excessive social media use can contribute to anxiety, depression, and low self-esteem.",
+            "what is perfectionism?": "Perfectionism is the tendency to set excessively high standards and fear failure.",
+            "how to set healthy boundaries?": "Setting boundaries involves communicating limits to protect emotional well-being.",
+            "what is existential anxiety?": "Existential anxiety is the distress caused by questions about life's meaning and purpose.",
+            "how can laughter improve mental health?": "Laughter reduces stress, improves mood, and strengthens social connections.",
+            "what is ADHD?": "ADHD is a neurodevelopmental disorder affecting attention, impulse control, and hyperactivity.",
+            "how to deal with intrusive thoughts?": "Managing intrusive thoughts involves mindfulness, CBT techniques, and self-awareness.",
+            "what are affirmations?": "Affirmations are positive statements that help challenge negative thinking patterns.",
+            "what is radical acceptance?": "Radical acceptance is fully acknowledging reality to reduce suffering.",
+            "how to improve emotional intelligence?": "Improving emotional intelligence involves self-awareness, empathy, and emotional regulation.",
+            "can spirituality improve mental health?": "Yes, spirituality can provide purpose, reduce stress, and improve coping skills."
+        };
+        window.onload = function() {
+    console.log("Chat script initialized!");
+};
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+}
+        function sendMessage() {
+    const messageInput = document.getElementById("messageInput");
+    const chatBox = document.getElementById("chatBox");
+
+    if (!messageInput || !chatBox) {
+        console.error("Elements not found!");
+        return;
+    }
+
+    function getChatbotResponse(userMessage) {
+    userMessage = userMessage.toLowerCase().trim();
+    
+    // Create a keyword map for fast lookup
+    const keywordMap = {
+        "depression": "Depression is a mood disorder that causes persistent feelings of sadness and loss of interest.",
+        "anxiety": "Managing anxiety can involve deep breathing exercises, mindfulness, and therapy.",
+        "bipolar": "Bipolar disorder symptoms include extreme mood swings, from depressive lows to manic highs.",
+        "ptsd": "You can support someone with PTSD by listening, encouraging professional help, and being patient.",
+        "therapy": "Cognitive Behavioral Therapy (CBT) is a type of psychotherapy that helps change negative thought patterns.",
+        "schizophrenia": "Schizophrenia symptoms include hallucinations, delusions, and disorganized thinking.",
+        "stress": "Stress management strategies include exercise, relaxation techniques, and talking to someone you trust.",
+        "burnout": "Signs of burnout include exhaustion, reduced performance, and feelings of detachment.",
+        "trauma": "Trauma can lead to PTSD, anxiety, depression, and other mental health challenges.",
+        "mindfulness": "Mindfulness meditation is a practice of focusing on the present moment to reduce stress and improve mental clarity.",
+        "grief": "Grief is a natural response to loss, often involving emotions like sadness, anger, and acceptance.",
+        "journaling": "Journaling helps process emotions, reduce stress, and track personal growth.",
+        "exposure": "Exposure therapy is a treatment that helps people face and reduce fear-based responses.",
+        "mental illness": "Many mental illnesses can be managed effectively with treatment, but not all are curable.",
+        "self-care": "Self-care involves activities that improve mental, emotional, and physical well-being.",
+        "imposter": "Imposter syndrome is doubting one’s abilities despite success and external validation.",
+        "gratitude": "Practicing gratitude involves acknowledging and appreciating positive aspects of life.",
+        "social media": "Excessive social media use can contribute to anxiety, depression, and low self-esteem.",
+        "perfectionism": "Perfectionism is the tendency to set excessively high standards and fear failure.",
+        "boundaries": "Setting boundaries involves communicating limits to protect emotional well-being.",
+        "adhd": "ADHD is a neurodevelopmental disorder affecting attention, impulse control, and hyperactivity.",
+        "intrusive thoughts": "Managing intrusive thoughts involves mindfulness, CBT techniques, and self-awareness.",
+        "affirmations": "Affirmations are positive statements that help challenge negative thinking patterns.",
+        "radical acceptance": "Radical acceptance is fully acknowledging reality to reduce suffering.",
+        "emotional intelligence": "Improving emotional intelligence involves self-awareness, empathy, and emotional regulation.",
+        "spirituality": "Yes, spirituality can provide purpose, reduce stress, and improve coping skills."
+    };
+
+    // Split user message into words
+    let words = userMessage.split(" ");
+
+    // Check each word against our keyword map
+    for (let word of words) {
+        if (keywordMap[word]) {
+            return keywordMap[word];
+        }
+    }
+
+    return "I'm here to support you. Can you be more specific?";
+}
+
+
+    if (messageInput.value.trim() !== "") {
+        console.log("Sending message:", messageInput.value);
+        const userMessage = document.createElement("div");
+        userMessage.textContent = "You: " + messageInput.value;
+        userMessage.style.padding = "8px";
+        userMessage.style.margin = "5px 0";
+        userMessage.style.background = "#dcf8c6"; // WhatsApp-style light green
+        userMessage.style.textAlign = "right"; // Align user messages to the right
+        userMessage.style.borderRadius = "15px 15px 0 15px";
+        userMessage.style.padding = "10px";
+        userMessage.style.margin = "5px 0";
+        userMessage.style.maxWidth = "70%";
+        userMessage.style.float = "right";
+        userMessage.style.clear = "both";
+       
+
+        chatBox.appendChild(userMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        const typingIndicator = document.createElement("div");
+typingIndicator.textContent = "Bot is typing...";
+typingIndicator.style.padding = "8px";
+typingIndicator.style.margin = "5px 0";
+typingIndicator.style.background = "#ddd";
+typingIndicator.style.borderRadius = "5px";
+typingIndicator.style.textAlign = "left";
+chatBox.appendChild(typingIndicator);
+chatBox.scrollTop = chatBox.scrollHeight;
+
+setTimeout(() => {
+    chatBox.removeChild(typingIndicator); // Remove typing indicator
+    const response = getChatbotResponse(messageInput.value);
+    const botMessage = document.createElement("div");
+    botMessage.textContent = "Bot: " + response;
+    botMessage.style.padding = "10px";
+    botMessage.style.margin = "5px 0";
+    botMessage.style.background = "#ffffff"; 
+    botMessage.style.borderRadius = "15px 15px 15px 0";
+    botMessage.style.maxWidth = "70%";
+    botMessage.style.float = "left";
+    botMessage.style.clear = "both";
+
+    chatBox.appendChild(botMessage);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}, 1000); // Simulate delay for typing effect
+
+        const botMessage = document.createElement("div");
+        botMessage.textContent = "Bot: " + response;
+        botMessage.style.padding = "8px";
+        botMessage.style.margin = "5px 0";
+        botMessage.style.background = "#ffffff"; // WhatsApp-style white for bot
+        botMessage.style.textAlign = "left"; // Align bot messages to the left
+        botMessage.style.borderRadius = "15px 15px 15px 0";
+        botMessage.style.padding = "10px";
+        botMessage.style.margin = "5px 0";
+        botMessage.style.maxWidth = "70%";
+        botMessage.style.float = "left";
+        botMessage.style.clear = "both";
+
+       
+
+        chatBox.appendChild(botMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        messageInput.value = "";
+    }
+}
+ 
+        function getChatbotResponse(userMessage) {
+            userMessage = userMessage.toLowerCase().trim();
+            for (let question in faq) {
+                if (userMessage.includes(question)) {
+                    return faq[question];
+                }
+            }
+            return "I'm here to support you. Can you be more specific?";
+        }
+        console.log("Chat script loaded successfully!");
+
+    </script>
+</body>
+</html>
