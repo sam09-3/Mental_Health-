@@ -1,0 +1,37 @@
+Thia is for chat bot questions. 
+for Ex. 
+type 'depression' and it gives answer.
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        "depression": "Depression is a mood disorder that causes persistent feelings of sadness and loss of interest.",
+        "anxiety": "Managing anxiety can involve deep breathing exercises, mindfulness, and therapy.",
+        "bipolar": "Bipolar disorder symptoms include extreme mood swings, from depressive lows to manic highs.",
+        "ptsd": "You can support someone with PTSD by listening, encouraging professional help, and being patient.",
+        "therapy": "Cognitive Behavioral Therapy (CBT) is a type of psychotherapy that helps change negative thought patterns.",
+        "schizophrenia": "Schizophrenia symptoms include hallucinations, delusions, and disorganized thinking.",
+        "stress": "Stress management strategies include exercise, relaxation techniques, and talking to someone you trust.",
+        "burnout": "Signs of burnout include exhaustion, reduced performance, and feelings of detachment.",
+        "trauma": "Trauma can lead to PTSD, anxiety, depression, and other mental health challenges.",
+        "mindfulness": "Mindfulness meditation is a practice of focusing on the present moment to reduce stress and improve mental clarity.",
+        "grief": "Grief is a natural response to loss, often involving emotions like sadness, anger, and acceptance.",
+        "journaling": "Journaling helps process emotions, reduce stress, and track personal growth.",
+        "exposure": "Exposure therapy is a treatment that helps people face and reduce fear-based responses.",
+        "mental illness": "Many mental illnesses can be managed effectively with treatment, but not all are curable.",
+        "self-care": "Self-care involves activities that improve mental, emotional, and physical well-being.",
+        "imposter": "Imposter syndrome is doubting one’s abilities despite success and external validation.",
+        "gratitude": "Practicing gratitude involves acknowledging and appreciating positive aspects of life.",
+        "social media": "Excessive social media use can contribute to anxiety, depression, and low self-esteem.",
+        "perfectionism": "Perfectionism is the tendency to set excessively high standards and fear failure.",
+        "boundaries": "Setting boundaries involves communicating limits to protect emotional well-being.",
+        "adhd": "ADHD is a neurodevelopmental disorder affecting attention, impulse control, and hyperactivity.",
+        "intrusive thoughts": "Managing intrusive thoughts involves mindfulness, CBT techniques, and self-awareness.",
+        "affirmations": "Affirmations are positive statements that help challenge negative thinking patterns.",
+        "radical acceptance": "Radical acceptance is fully acknowledging reality to reduce suffering.",
+        "emotional intelligence": "Improving emotional intelligence involves self-awareness, empathy, and emotional regulation.",
+        "spirituality": "Yes, spirituality can provide purpose, reduce stress, and improve coping skills."
+
+
+
